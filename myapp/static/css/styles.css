@@ -5,6 +5,8 @@
     height: 100vh; /* Ajusta la altura según sea necesario */
 }
 iframe {
+    width: 90vw; /* 90% del ancho de la ventana del navegador */
+    height: 80vh; /* 80% de la altura de la ventana del navegador */
     border: none;
 }
 
