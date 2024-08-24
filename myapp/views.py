@@ -39,5 +39,7 @@ def graph_view(request):
     context = {'graph_html': graph_html}
     return render(request, 'myapp/graph.html', context)
 
+def home_view(request):
+    return render(request, 'myapp/home.html')
 
 # Create your views here.

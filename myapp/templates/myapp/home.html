@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mi Proyecto Django</title>
+    {% load static %}
+    <style>
+        .iframe-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Ajusta la altura según sea necesario */
+        }
+        iframe {
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Proyecto de Matemáticas Discretas</h1>
+    <div class="iframe-container">
+        <iframe 
+            src="{% static 'graph_chart.html' %}" 
+            width="700" height="500">
+        </iframe>
+    </div>
+</body>
+</html>
