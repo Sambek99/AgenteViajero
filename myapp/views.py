@@ -4,6 +4,8 @@ import networkx as nx
 from django.shortcuts import render
 from pyecharts import options as opts
 from pyecharts.charts import Graph
+from pyecharts.charts import Bar
+
 
 #def index(request):
 #    line_chart = (
@@ -16,6 +18,18 @@ from pyecharts.charts import Graph
 #    return render(request, 'index.html')
 
 #
+def bienvenida_view(request):
+    # Crear una gráfica con pyecharts
+    bar = Bar()
+    bar.add_xaxis(["A", "B", "C", "D"])
+    bar.add_yaxis("Ejemplo", [10, 20, 30, 40])
+    bar.set_global_opts(title_opts=opts.TitleOpts(title="Gráfica Estática"))
+    
+    # Renderizar la gráfica en HTML
+    bar_html = bar.render_embed()
+    
+    return render(request, 'myapp/bienvenida.html', {'bar_html': bar_html})
+
 def graph_view(request):
     # Crear un grafo simple
     G = nx.Graph()
@@ -37,9 +51,16 @@ def graph_view(request):
 
     # Pasar el HTML a la plantilla
     context = {'graph_html': graph_html}
-    return render(request, 'myapp/graph.html', context)
+    return render(request, 'myapp/home.html', context)
 
 def home_view(request): 
     return render(request, 'myapp/home.html')
+
+# Vista para la página siguiente
+def siguiente_view(request):
+    # Puedes procesar el input del usuario aquí si es necesario
+    user_input = request.POST.get('user_input', None)
+    
+    return render(request, 'myapp/index.html', {'user_input': user_input})
 
 # Create your views here.

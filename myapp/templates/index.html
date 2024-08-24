@@ -9,6 +9,10 @@
     <iframe 
     src="/static/graph_chart.html" 
     width="100%" height="100%">
+    <!-- Botón para regresar a la página de bienvenida -->
+    <form action="{% url 'siguiente_view' %}">
+        <button type="submit">Atrás</button>
+    </form>
 
 </iframe>
 
