@@ -21,5 +21,5 @@ from django.views.generic import TemplateView  # Opcional, para una página de i
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('myapp.urls')),
-    path('', TemplateView.as_view(template_name='index.html'), name='home'),  # Página de inicio opcional
+    path('', TemplateView.as_view(template_name='bienvenida.html'), name='home'),  # Página de inicio opcional
 ]

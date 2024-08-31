@@ -7,17 +7,6 @@ from pyecharts.charts import Graph
 from pyecharts.charts import Bar
 
 
-#def index(request):
-#    line_chart = (
-#        Line()
-#        .add_xaxis(["Jan", "Feb", "Mar", "Apr", "May"])
-#        .add_yaxis("Sales", [5, 20, 36, 10, 75])
-#        .set_global_opts(title_opts=opts.TitleOpts(title="Line Chart"))
-#    )
-#    line_chart.render("myapp/static/line_chart.html")
-#    return render(request, 'index.html')
-
-#
 def bienvenida_view(request):
     # Crear una gráfica con pyecharts
     bar = Bar()
@@ -61,6 +50,6 @@ def siguiente_view(request):
     # Puedes procesar el input del usuario aquí si es necesario
     user_input = request.POST.get('user_input', None)
     
-    return render(request, 'myapp/index.html', {'user_input': user_input})
+    return render(request, 'myapp/bienvenida.html', {'user_input': user_input})
 
 # Create your views here.

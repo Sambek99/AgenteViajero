@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bienvenido</title>
+</head>
+<body>
+    <h1>Bienvenido a la Página</h1>
+    
+    <!-- Mostrar la gráfica -->
+    <div>
+        {{ bar_html|safe }}
+    </div>
+    
+    <!-- Input del usuario -->
+    <form method="POST" action="{% url 'siguiente' %}">
+        {% csrf_token %}
+        <label for="user_input">Introduce algo:</label>
+        <input type="text" id="user_input" name="user_input">
+        <button type="submit">Siguiente</button>
+    </form>
+</body>
+</html>
