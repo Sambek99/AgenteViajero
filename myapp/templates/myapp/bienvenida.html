@@ -36,9 +36,10 @@
         }
         .formulario-izquierdo label {
             padding-bottom: 10px; /* Agregamos un poco de padding debajo del texto */
+            margin-bottom: 10px; /* Agregamos un poco de margen inferior al texto */
         }
         .formulario-izquierdo button[type="submit"] {
-            margin-top: 10px; /* Agregamos un poco de margen superior al botón */
+            margin-top: 20px; /* Agregamos un poco de margen superior al botón */
         }
     </style>
 </head>
@@ -46,6 +47,8 @@
     {% load static %} <!-- Cargamos las etiquetas estáticas -->
 
     <h1>Proyecto de matemáticas discretas</h1>
+    <h2>Problema del agente viajero</h2>
+
     
     <!-- Texto -->
     <div class="texto-formulario" id="texto">
@@ -54,7 +57,7 @@
     
     <!-- Mostrar la gráfica -->
     <div class="grafico">
-        {{ bar_html|safe }}
+        <iframe src="{% static 'force_layout.html' %}" frameborder="0" width="100%" height="500"></iframe>
     </div>
     
     <!-- Formulario -->
