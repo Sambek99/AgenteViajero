@@ -2,21 +2,59 @@
 <html>
 <head>
     <title>Bienvenido</title>
+    <style>
+        .texto-formulario {
+            float: left;
+            width: 40%;
+            padding: 20px;
+            text-align: justify;
+            white-space: pre-wrap; /* Para respetar los saltos de línea del texto */
+        }
+        .grafico {
+            float: right;
+            width: 60%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+        }
+    </style>
 </head>
 <body>
+    {% load static %} <!-- Cargamos las etiquetas estáticas -->
+
     <h1>Bienvenido a la Página</h1>
     
+    <!-- Texto -->
+    <div class="texto-formulario" id="texto">
+        <!-- El texto del archivo .txt se cargará aquí -->
+    </div>
+    
     <!-- Mostrar la gráfica -->
-    <div>
+    <div class="grafico">
         {{ bar_html|safe }}
     </div>
     
-    <!-- Input del usuario -->
-    <form method="POST" action="{% url 'siguiente' %}">
-        {% csrf_token %}
-        <label for="user_input">Introduce algo:</label>
-        <input type="text" id="user_input" name="user_input">
-        <button type="submit">Siguiente</button>
-    </form>
+    <!-- Formulario -->
+    <div style="clear: both;"></div>
+    <div class="texto-formulario" style="width: 100%; text-align: center;">
+        <form method="POST" action="{% url 'siguiente' %}">
+            {% csrf_token %}
+            <label for="user_input">Introduce algo:</label>
+            <input type="text" id="user_input" name="user_input">
+            <button type="submit">Siguiente</button>
+        </form>
+    </div>
+
+    <script>
+        // Cargar el contenido del archivo texto.txt usando fetch y mostrarlo en el div con id "texto"
+        fetch("{% static 'texto.txt' %}")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('texto').textContent = data;
+            })
+            .catch(error => console.error('Error al cargar el archivo:', error));
+    </script>
 </body>
 </html>
