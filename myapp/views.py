@@ -6,6 +6,14 @@ from pyecharts import options as opts
 from pyecharts.charts import Graph
 from pyecharts.charts import Bar
 
+#Función que recibe la cantidad de nodos para decidir que trabajar y calcular los ciclos de Hamilton
+def calcular_ruta(n):
+    if n == 5:
+        G= nx.Graph()
+        G.add_nodes_from(["A","B","C","D","E"])
+        G.add_edges_from([("A", "B", {'weight': 4}),("A", "C", {'weight': 3}),("A", "D", {'weight': 5}),("A", "E", {'weight': 3}),("B", "C", {'weight': 5}),("B", "D", {'weight': 7}),("B", "E", {'weight': 2}),("C", "D", {'weight': 4}),("C", "E", {'weight': 6}),("D", "E", {'weight': 3})])
+
+
 
 def bienvenida_view(request):
     # Crear una gráfica con pyecharts

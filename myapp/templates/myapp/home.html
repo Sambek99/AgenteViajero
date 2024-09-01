@@ -5,10 +5,10 @@
     {% load static %}
     <style>
         .iframe-container {
-            display: flex;
+            display: inside;
             justify-content: center;
             align-items: center;
-            height: 100vh; /* Ajusta la altura según sea necesario */
+            height: 60vh; /* Ajusta la altura según sea necesario */
             position: relative; /* Agregamos posición relativa al contenedor */
         }
         .iframe-container iframe {
@@ -19,7 +19,7 @@
         }
         .iframe-container form {
             position: absolute; /* Posicionamos el formulario de manera absoluta */
-            bottom: 0; /* Lo colocamos en la parte inferior */
+            bottom: 5; /* Lo colocamos en la parte inferior */
             left: 0; /* Lo colocamos en la esquina izquierda */
         }
         .iframe-container form button[type="submit"] {
@@ -39,7 +39,7 @@
 
     <div class="iframe-container">
         <iframe 
-            src="{% static 'force_layout.html' %}" 
+            src="{% static 'force_layout5.html' %}" 
             frameborder="0">
         </iframe>
         <form action="{% url 'bienvenida' %}">

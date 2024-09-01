@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Grafo en ECharts</title>
+    <script src="https://fastly.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script src="https://fastly.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+</head>
+<body>
+    <!-- Contenedor del gráfico -->
+    <div id="chart-container" style="width: 800px;height:450px;"></div>
+
+    <script type="text/javascript">
+        // Inicializar ECharts en el contenedor
+        var myChart = echarts.init(document.getElementById('chart-container'));
+
+        // Opciones del grafo
+        var option = {
+            tooltip: {},
+            series: [{
+                type: 'graph',
+                layout: 'force',
+                symbolSize: 20,
+                roam: true,
+                label: {
+                    show: true
+                },
+                force: {
+                    repulsion: 16000
+                },
+                edgeSymbol: ['circle'],
+                edgeSymbolSize: [4, 10],
+                edgeLabel: {
+                    fontSize: 12
+                },
+                data: [
+                    { name: 'A', itemStyle: { normal: { color: '#FF69B4', symbol: 'circle' } } },
+                    { name: 'B', itemStyle: { normal: { color: '#33CC33', symbol: 'circle' } } },
+                    { name: 'C', itemStyle: { normal: { color: '#6666CC', symbol: 'circle' } } },
+                    { name: 'D', itemStyle: { normal: { color: '#CC3333', symbol: 'circle' } } },
+                    { name: 'E', itemStyle: { normal: { color: '#CC3333', symbol: 'circle' } } }
+
+                ],
+                links: [
+                    { source: 'A', target: 'B', value: 'Conexión A-B' 
+                    , lineStyle: { normal: { color: 'red' } }, label: { show: true, position: "middle" ,formatter: '4' }},
+                    { source: 'A', target: 'C', value: 'Conexión A-C' 
+                    , lineStyle: { normal: { color: 'gray' } }, label: { show: true, position: "middle" ,formatter: '3' }},
+                    { source: 'A', target: 'D', value: 'Conexión A-D' 
+                    , lineStyle: { normal: { color: 'gray' } }, label: { show: true, position: "middle" ,formatter: '5' }},
+                    { source: 'A', target: 'E', value: 'Conexión A-E' 
+                    , lineStyle: { normal: { color: 'gray' } }, label: { show: true, position: "middle" ,formatter: '3' }},
+                    { source: 'B', target: 'C', value: 'Conexión B-C' 
+                    , lineStyle: { normal: { color: 'gray' } }, label: { show: true, position: "middle" ,formatter: '5' }},
+                    { source: 'B', target: 'D', value: 'Conexión B-D' 
+                    , lineStyle: { normal: { color: 'gray' } }, label: { show: true, position: "middle" ,formatter: '7' }},
+                    { source: 'B', target: 'E', value: 'Conexión B-E' 
+                    , lineStyle: { normal: { color: 'gray' } }, label: { show: true, position: "middle",padding: 3 ,formatter: '2' }},
+                    { source: 'C', target: 'D', value: 'Conexión C-D' 
+                    , lineStyle: { normal: { color: 'gray' } }, label: { show: true, position: "middle" ,formatter: '4' }},
+                    { source: 'C', target: 'E', value: 'Conexión C-E' 
+                    , lineStyle: { normal: { color: 'gray' } }, label: { show: true, position: "middle" ,formatter: '6' }},
+                    { source: 'D', target: 'E', value: 'Conexión D-E' 
+                    , lineStyle: { normal: { color: 'gray' } }, label: { show: true, position: "middle" ,formatter: '3' }},
+                ],
+                lineStyle: {
+                    normal: {
+                        color: '#aaa', // Color de las líneas
+                        width: 1, // Ancho de las líneas
+                        type: 'solid' // Estilo de las líneas
+                    }
+                }
+            }]
+        };
+
+        // Usar las opciones para crear el gráfico
+        myChart.setOption(option);
+    </script>
+</body>
+</html>
