@@ -26,7 +26,7 @@
                     show: true
                 },
                 force: {
-                    repulsion: 16000
+                    repulsion: 20000
                 },
                 edgeSymbol: ['circle'],
                 edgeSymbolSize: [4, 10],
@@ -41,27 +41,28 @@
                     { name: 'E', itemStyle: { normal: { color: '#CC3333', symbol: 'circle' } } }
 
                 ],
+
                 links: [
                     { source: 'A', target: 'B', value: 'Conexión A-B' 
-                    , lineStyle: { normal: { color: 'red' } }, label: { show: true, position: "middle" ,formatter: '4' }},
+                    , lineStyle: { normal: { color: 'gray', width: 1 } }, label: { show: true, position: "middle" ,formatter: '4' }},
                     { source: 'A', target: 'C', value: 'Conexión A-C' 
-                    , lineStyle: { normal: { color: 'gray' } }, label: { show: true, position: "middle" ,formatter: '3' }},
+                    , lineStyle: { normal: { color: 'gray', width: 1 } }, label: { show: true, position: "middle" ,formatter: '3' }},
                     { source: 'A', target: 'D', value: 'Conexión A-D' 
-                    , lineStyle: { normal: { color: 'gray' } }, label: { show: true, position: "middle" ,formatter: '5' }},
+                    , lineStyle: { normal: { color: 'gray', width: 1 } }, label: { show: true, position: "middle" ,formatter: '5' }},
                     { source: 'A', target: 'E', value: 'Conexión A-E' 
-                    , lineStyle: { normal: { color: 'gray' } }, label: { show: true, position: "middle" ,formatter: '3' }},
+                    , lineStyle: { normal: { color: 'gray', width: 3 } }, label: { show: true, position: "middle" ,formatter: '3' }},
                     { source: 'B', target: 'C', value: 'Conexión B-C' 
-                    , lineStyle: { normal: { color: 'gray' } }, label: { show: true, position: "middle" ,formatter: '5' }},
+                    , lineStyle: { normal: { color: 'gray', width: 3 } }, label: { show: true, position: "middle" ,formatter: '5' }},
                     { source: 'B', target: 'D', value: 'Conexión B-D' 
-                    , lineStyle: { normal: { color: 'gray' } }, label: { show: true, position: "middle" ,formatter: '7' }},
+                    , lineStyle: { normal: { color: 'gray', width: 1 } }, label: { show: true, position: "middle" ,formatter: '7' }},
                     { source: 'B', target: 'E', value: 'Conexión B-E' 
-                    , lineStyle: { normal: { color: 'gray' } }, label: { show: true, position: "middle",padding: 3 ,formatter: '2' }},
+                    , lineStyle: { normal: { color: 'gray', width: 1 } }, label: { show: true, position: "middle",padding: 3 ,formatter: '2' }},
                     { source: 'C', target: 'D', value: 'Conexión C-D' 
-                    , lineStyle: { normal: { color: 'gray' } }, label: { show: true, position: "middle" ,formatter: '4' }},
+                    , lineStyle: { normal: { color: 'gray', width: 3 } }, label: { show: true, position: "middle" ,formatter: '4' }},
                     { source: 'C', target: 'E', value: 'Conexión C-E' 
-                    , lineStyle: { normal: { color: 'gray' } }, label: { show: true, position: "middle" ,formatter: '6' }},
+                    , lineStyle: { normal: { color: 'gray', width: 1 } }, label: { show: true, position: "middle" ,formatter: '6' }},
                     { source: 'D', target: 'E', value: 'Conexión D-E' 
-                    , lineStyle: { normal: { color: 'gray' } }, label: { show: true, position: "middle" ,formatter: '3' }},
+                    , lineStyle: { normal: { color: 'gray', width: 1 } }, label: { show: true, position: "middle" ,formatter: '3' }},
                 ],
                 lineStyle: {
                     normal: {
@@ -76,5 +77,20 @@
         // Usar las opciones para crear el gráfico
         myChart.setOption(option);
     </script>
+    <script>
+        function updateLinks(sourcesAndTargets, newColor, newWidth) {
+            sourcesAndTargets.forEach(function(item) {
+                const link = option.series[0].links.find(function(link) {
+                    return link.source === item.source && link.target === item.target;
+            });
+            if (link) {
+                link.lineStyle.normal.color = "red";
+                link.lineStyle.normal.width = 3;
+            }
+        });
+        // Actualizar el gráfico con las nuevas opciones
+        myChart.setOption(option);
+        }
+      </script>
 </body>
 </html>

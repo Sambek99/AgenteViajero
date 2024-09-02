@@ -1,7 +1,7 @@
 from django.shortcuts import render
 import networkx as nx
 from django.http import HttpResponse
-
+import json
 from django.shortcuts import render
 from pyecharts import options as opts
 from pyecharts.charts import Graph
@@ -66,6 +66,24 @@ def encontrar_ciclos_hamilton(G, vertice_partida=None):
         peso = 0
     return dic_ciclos
 
+#Genera el JSON
+def generate_json(dic):
+    pesos = []
+    for i in dic.keys():
+        dato = dic[i]['weight']
+        pesos.append(dato)
+    edges_to_update = []
+    mini = dic[min(pesos)]['ciclo']
+    for edge in mini:
+        edge_dict = {
+            "source": edge[0],
+            "target": edge[1],
+            "newColor": "red",
+            "newWidth": 3
+        }
+        edges_to_update.append(edge_dict)
+    data = {"edgesToUpdate": edges_to_update}
+    return json.dumps(data)
 
 def bienvenida_view(request):
     # Crear una gráfica con pyecharts
