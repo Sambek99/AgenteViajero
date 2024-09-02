@@ -36,6 +36,12 @@
 <body>
     <h1>Proyecto de Matemáticas Discretas</h1>
     <h2>Problema del agente viajero</h2>
+    {% if is_post %}
+    <h3>Nodo de partida: {{ nodo_partida }}</h3>
+    {% else %}
+    <h3>No se ha seleccionado un nodo de partida (no es una solicitud POST)</h3>
+    {% endif %}
+
 
     <div class="iframe-container">
         <iframe 

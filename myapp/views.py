@@ -1,10 +1,12 @@
 from django.shortcuts import render
 import networkx as nx
+from django.http import HttpResponse
 
 from django.shortcuts import render
 from pyecharts import options as opts
 from pyecharts.charts import Graph
 from pyecharts.charts import Bar
+from django.shortcuts import redirect
 
 #Función que recibe la cantidad de nodos para decidir que trabajar y calcular los ciclos de Hamilton
 def calcular_ruta(n):
@@ -12,7 +14,10 @@ def calcular_ruta(n):
         G= nx.Graph()
         G.add_nodes_from(["A","B","C","D","E"])
         G.add_edges_from([("A", "B", {'weight': 4}),("A", "C", {'weight': 3}),("A", "D", {'weight': 5}),("A", "E", {'weight': 3}),("B", "C", {'weight': 5}),("B", "D", {'weight': 7}),("B", "E", {'weight': 2}),("C", "D", {'weight': 4}),("C", "E", {'weight': 6}),("D", "E", {'weight': 3})])
-
+        nodos = G.nodes()
+        for i in nodos:
+            print()
+    return 0        
 
 
 def bienvenida_view(request):
@@ -27,37 +32,18 @@ def bienvenida_view(request):
     
     return render(request, 'myapp/bienvenida.html', {'bar_html': bar_html})
 
-def graph_view(request):
-    # Crear un grafo simple
-    G = nx.Graph()
-    G.add_edges_from([(1, 2), (1, 3), (2, 4), (3, 5)])
 
-    # Convertir el grafo a un formato que pyecharts pueda usar
-    nodes = [{'name': str(node), 'symbolSize': 20} for node in G.nodes()]
-    links = [{'source': str(edge[0]), 'target': str(edge[1])} for edge in G.edges()]
 
-    # Crear el gráfico con pyecharts
-    graph = (
-        Graph()
-        .add('', nodes, links, repulsion=8000)
-        .set_global_opts(title_opts=opts.TitleOpts(title='Grafo'))
-    )
-
-    # Renderizar el gráfico en HTML
-    graph_html = graph.render_embed()
-
-    # Pasar el HTML a la plantilla
-    context = {'graph_html': graph_html}
-    return render(request, 'myapp/home.html', context)
-
-def home_view(request): 
-    return render(request, 'myapp/home.html')
 
 # Vista para la página siguiente
 def siguiente_view(request):
-    # Puedes procesar el input del usuario aquí si es necesario
-    user_input = request.POST.get('user_input', None)
-    
-    return render(request, 'myapp/bienvenida.html', {'user_input': user_input})
+    nodo_partida = None  # Define nodo_partida como None por defecto
+    if request.method == 'POST':
+        user_input = request.POST.get('user_input', None)
+        if user_input:
+            nodo_partida = request.session['nodo_partida'] = user_input
+            # Devuelve una respuesta HTTP que indique que la solicitud fue procesada correctamente
+            #return HttpResponse('Nodo de partida seleccionado correctamente')
+    return render(request, 'myapp/home.html',{'nodo_partida': nodo_partida,'is_post': request.method == 'POST'})
 
 # Create your views here.
