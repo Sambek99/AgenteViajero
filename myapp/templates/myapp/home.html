@@ -37,9 +37,15 @@
     <h1>Proyecto de Matemáticas Discretas</h1>
     <h2>Problema del agente viajero</h2>
     {% if is_post %}
-    <h3>Nodo de partida: {{ nodo_partida }}</h3>
+    {% if nodo_partida %}
+        <h3>Nodo de partida: {{ nodo_partida }}</h3>
+    {% elif nodo_partida is None %}
+        <h3>No se ha seleccionado un nodo de partida</h3>
     {% else %}
-    <h3>No se ha seleccionado un nodo de partida (no es una solicitud POST)</h3>
+        <h3>Unknown error</h3>
+    {% endif %}
+    {% else %}
+    <h3>No es una solicitud POST</h3>
     {% endif %}
 
 
